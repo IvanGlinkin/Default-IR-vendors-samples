@@ -1,8 +1,10 @@
 # Samsung IR TV Remote Signals, including measurement, raw signals and decoded data
 
+
 Measurement:
 ____________
 ![](https://raw.githubusercontent.com/IvanGlinkin/Default-IR-vendors-samples/refs/heads/main/Samsung/TV/Samples/Measurement.png)
+
 
 Decoded data:
 _____________
