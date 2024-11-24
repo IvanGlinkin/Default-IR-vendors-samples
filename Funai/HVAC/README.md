@@ -3,7 +3,7 @@
 
 Measurement:
 ------------
-![]()
+![](https://raw.githubusercontent.com/IvanGlinkin/Default-IR-vendors-samples/refs/heads/main/Funai/HVAC/Samples/Measurement.png)
 
 
 Decoded data:
