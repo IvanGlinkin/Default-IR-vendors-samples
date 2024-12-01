@@ -3,7 +3,7 @@
 
 Measurement:
 ------------
-![]()
+![](https://raw.githubusercontent.com/IvanGlinkin/Default-IR-vendors-samples/refs/heads/main/Electrolux/Fireplace/Samples/Measurement.png)
 
 
 Decoded data:
