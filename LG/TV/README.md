@@ -3,7 +3,7 @@
 
 Measurement:
 ------------
-![]()
+![](https://raw.githubusercontent.com/IvanGlinkin/Default-IR-vendors-samples/refs/heads/main/LG/TV/Samples/Measurement.png)
 
 
 Decoded data:
