@@ -9,29 +9,30 @@ Before diving into the subject, we need to prepare the necessary hardware and so
 
 But, speaking of PulseView, it can also be installed onto Linux OS and it’s fully opensource, comparing to the proprietary Logic 2. Also, PusleView has least 3 IR analyzers from the box (NEC, RC-5, RC-6), but Logic 2 does not. Definitely, you can install additional analyzers from the internet, but it’s an additional headache as you have to find the proper one (hopefully not bundled with a trojan), properly install all the libraries and cross your fingers it’s working. Speaking of me, I have both of them installed on my PC, but I prefer working with Logic 2 as it’s more convenient and does not have critical mistakes when you have to close/open the app after each measurement.
 ![](https://raw.githubusercontent.com/IvanGlinkin/media_support/refs/heads/main/HackingIR-001.png)
-Logic 2 / PulseView overview	
+*Logic 2 / PulseView overview*
 
 Now let’s talk about the hardware we need, which involves more than just an application. And we would love to start from the breadboard. A breadboard is a reusable platform for prototyping and testing electronic circuits without soldering. It consists of rows and columns of small, conductive sockets into which electronic components can be inserted. It is super convenient to place jump wires and our next guest – IR receiver.
 ![](https://raw.githubusercontent.com/IvanGlinkin/media_support/refs/heads/main/HackingIR-002.png)
-Breadboard	
+*Breadboard*
 
 An IR receiver is an electronic device that detects and processes infrared light signals. It is commonly used in devices like TVs, remote-controlled gadgets, and automation systems to receive commands from an IR transmitter, such as a remote control. In our particular project we are using the IR receiver from the Elegoo 37 Sensor Kit (https://spot.pcc.edu/~dgoldman/labs/37SENSORKIT.pdf). It has 3 pins, where G is ground, R is Vcc (in our case it’s up to 5V volts) and Y is an output (for transmitting the payload). The Wiring diagram how to connect the IR receiver you can find on the page 107 of the provided tutorial.
 ![](https://raw.githubusercontent.com/IvanGlinkin/media_support/refs/heads/main/HackingIR-003.png)
-IR Receiver	
+*IR Receiver*
+
 ![](https://raw.githubusercontent.com/IvanGlinkin/media_support/refs/heads/main/HackingIR-004.png)
-Wiring diagram	
+*Wiring diagram*	
 
 Next, without what we can’t connect anything – bunch of jump wires. Basically, what types of wires you will need to use depends on your connection scheme. But we would highly recommend to have all types of them: male-male, male-female, female-female; as you don’t know at the start of the project which of them will be useful to you.
 ![](https://raw.githubusercontent.com/IvanGlinkin/media_support/refs/heads/main/HackingIR-005.png)
-Jump wires	
+*Jump wires*	
 
 Another one (and we would say, one of the most important equipment), is Logic Analyzer. It is a debugging tool used to capture, analyze, and visualize digital signals in a circuit. Logic Analyzer helps to diagnose issues, monitor communication protocols (like I2C, SPI, or UART), and verify timing relationships between multiple signals.
 ![](https://raw.githubusercontent.com/IvanGlinkin/media_support/refs/heads/main/HackingIR-006.png)	
-Logic analyzer	
+*Logic analyzer*	
 
 The last one is an external DC power supply, at least capable to output 3.3 volts. You can use whatever you like or have, but in our case, we are using Raspberry Pi 4B. That little guy has at least 8 Ground pins, two 5 Volts pins and one 3.3 Volts pin. The biggest pros is that those pins are predefined by design and you don’t need to program it in any way (good for beginners, right). If you have, for instance, Orange Pi or Arduino, it is suitable as well but you have to find the correct pins to be connected to.
 ![](https://raw.githubusercontent.com/IvanGlinkin/media_support/refs/heads/main/HackingIR-007.png)
-Raspberry Pi GPIO pins	
+*Raspberry Pi GPIO pins*	
 
 
 1.Bringing it all together:
@@ -43,20 +44,20 @@ First, let’s take the IR receiver and plug it into the breadboard. Please take
 
 Once you have done it, take 2 male-male jump wires and connect them in the next order. Breadboard line number 33 (sensor’s ground) to the blue line above the main circuit, breadboard line number 34 (sensor’s Vcc) to the red line above the main circuit. If you did everything correctly you have to have a scheme similar to ours.
 ![](https://raw.githubusercontent.com/IvanGlinkin/media_support/refs/heads/main/HackingIR-008.png)
-Connecting the IR	
+*Connecting the IR*
 
 Next move is to provide the electricity to our board. Take your Raspberry Pi (or whatever you have as an external power supply) and 2 male-female jump wires. Plug the female end of one wire into the 1st Raspberry Pi pin (exactly where the 3.3 Volts are) and another end to the red line above the main circuit. Simultaneously, plug the female end of the second wire into the 6th Raspberry Pi pin (exactly where the ground is) and another end to the blue line above the main circuit.
 
 If you did everything correctly you have to have a scheme similar to ours.
 ![](https://raw.githubusercontent.com/IvanGlinkin/media_support/refs/heads/main/HackingIR-009.png)
-Connecting the Raspberry Pi	
+*Connecting the Raspberry Pi*
 
 Once it’s done, connect the Raspberry Pi to the power supply cable. Some of LEDs on the PC’s board should start blinking showing the device is on and loading. But for us it does not matter as once RPi is connected to the electricity, our IR receiver starts working immediately.
 
 Next, take any or your IR remotes, for instance from TV or AC, and press any button on that like power. The small LED on the IR receiver circuit board should start blinking indicating the transmitting is going well. 
 ![](https://raw.githubusercontent.com/IvanGlinkin/media_support/refs/heads/main/HackingIR-010.png)
 ![](https://raw.githubusercontent.com/IvanGlinkin/media_support/refs/heads/main/HackingIR-011.png)
-IR transmitting	
+*IR transmitting*
 
 Great, it’s working well so far.
 
@@ -64,7 +65,7 @@ The last thing we have to connect is the logic analyzer. Before plugging it into
 
 Then, connect the second wire with the logic analyzer ground; and another end to the blue line above the main circuit. Without this, we cannot transmit the intercepted signal to our PC. Once it’s done you are free to connect the USB both ends to the logic analyzer and the PC respectively.
 ![](https://raw.githubusercontent.com/IvanGlinkin/media_support/refs/heads/main/HackingIR-012.png)
-Logic analyzer connection	
+*Logic analyzer connection*
 
 
 2.Intercepting and analyzing:
@@ -74,31 +75,31 @@ Alrighty 🙂 IR receiver is connected and working (at least it’s reacting to 
 
 Now let’s run a digital oscilloscope. With Logic 2 from Saleae there is no issues at all: once you launch it, it will detect our hardware automatically and set up everything by itself.
 ![](https://raw.githubusercontent.com/IvanGlinkin/media_support/refs/heads/main/HackingIR-013.png)
-Logic 2	
+*Logic 2*
 
 But when we are talking about PulseView – it’s not that straightforward. Once you run the application, you need to choose the device by clicking in the <No Device> button.
 ![](https://raw.githubusercontent.com/IvanGlinkin/media_support/refs/heads/main/HackingIR-014.png)
-PulseView	
+*PulseView*
 
 On the Step 1: Choose the driver – select fx2lafw (generic driver for FX2 based LAs).
 ![](https://raw.githubusercontent.com/IvanGlinkin/media_support/refs/heads/main/HackingIR-015.png)
-PulseView: Choose the driver	
+*PulseView: Choose the driver*
 
 On the Step 2 keep everything as it is by default – USB interface.
 
 Step 3 is just clicking the button – Scan for devices using driver above. If your logic analyzer is connected, on the Step 4 the application will automatically identify the hardware.
 ![](https://raw.githubusercontent.com/IvanGlinkin/media_support/refs/heads/main/HackingIR-016.png)
-PulseView: Select the device	
+*PulseView: Select the device*
 
 Other stuff which we are going to do is almost the same on both apps hence no need to duplicate it. As we mentioned above, we would use Logic 2 as our main app for this particular exercise.
 
 Before starting recording signals, we have to set up the bit rate and size of recording. For IR transmitting the bit rate of 1 megabit per second (MS/s) is more than enough as well as 1 GB of memory size. Actually, if we are talking about some common IR protocols like NEC or RC5, the carrier frequency is 38 and 36 kHz and that speed would be enough. But we would suggest to keep 1 MS/s just for extra sure.
 ![](https://raw.githubusercontent.com/IvanGlinkin/media_support/refs/heads/main/HackingIR-017.png)
-Logic 2: Settings	
+*Logic 2: Settings*
 
 Now, the truth moment – press the Run button. You may see the line on channel 0 started floating. Once it’s, take your remote and press any button, but in our case it’s Power button. If you did everything correctly, you could see the actual signal.
 ![](https://raw.githubusercontent.com/IvanGlinkin/media_support/refs/heads/main/HackingIR-018.png)
-Logic 2: Harvesting the signal	
+*Logic 2: Harvesting the signal*
 
 Great, we intercepted the IR signal, which is coming from the remote to the TV. The next step is to understand how it’s working and basically decode it.
 
@@ -106,31 +107,35 @@ First, there is a header (sometimes engineers also call it as leader code and pa
 
 If we are talking about NEC standard, the leader code is 9 ms, followed by a pause of 4.5 ms. But in our case (Samsung TV), the leader code is 4.5 ms as well as the pause – 4.4 ms. Please take into consideration, those time periods may have some faults and during our measurement there will be slightly different numbers.
 ![](https://raw.githubusercontent.com/IvanGlinkin/media_support/refs/heads/main/HackingIR-019.png)
-Logic 2: Header	
+*Logic 2: Header*
 
 Like on this particular picture, you may see we’ve taken 2 similar signals, but the time is different each time.
 ![](https://raw.githubusercontent.com/IvanGlinkin/media_support/refs/heads/main/HackingIR-020.png)	
-Logic 2: Time difference	
+*Logic 2: Time difference*
 
 After the header we have the data word – actual signal/payload which controls the TV. So, short pulse (in the bottom) followed by long pause (on the top) is basically 1 bit and equals – 1 or TRUE (red on the picture). On the other hand, short pulse followed by the short pause – 0 or FALSE (green on the picture).
 ![](https://raw.githubusercontent.com/IvanGlinkin/media_support/refs/heads/main/HackingIR-021.png)	
-Logic 2: Signal defining
+*Logic 2: Signal defining*
 
 Following that pattern lets define the full signal for Samsung TV remote for Power button.
 ![](https://raw.githubusercontent.com/IvanGlinkin/media_support/refs/heads/main/HackingIR-022.png)	
-Logic 2: The signal
+*Logic 2: The signal*
 
 After coloring each bit, let’s count them all: 3 reds (mean 111) followed by 5 greens (mean 00000). Then again 3 reds (mean 111) followed by 6 greens (000000). After that 1 red (1) followed by 6 greens (000000). And lastly 1 red (1), 1 green (0) and finally 6 reds (111111).
 
 Now, let’s combine them together:
 
+```
 11100000111000000100000010111111
+```
 
 We believe this view is not convenient hence let’s enhance it.
 
 First, let’s split this date into pieces of 8 bits:
 
+```
 11100000 11100000 01000000 10111111
+```
 
 Wow, this view is much better and we already can see a pattern as first 2 baits (1 bait is 8 bit) are the same.
 
@@ -138,21 +143,19 @@ Great, but usually no one is using the raw binary code as it’s long tough to r
 
 If you are reading this article, we believe you know how to convert numbers; but if you are a beginner, here you are some tips.
 
-First, you may use an online calculator CyberChef: just implement 2 modules – from binary and to hex. The result is here – E0 E0 40 BF.
+First, you may use an online calculator CyberChef: just implement 2 modules – from binary and to hex. The result is here – **E0 E0 40 BF**.
 ![](https://raw.githubusercontent.com/IvanGlinkin/media_support/refs/heads/main/HackingIR-023.png)	
-https://gchq.github.io/CyberChef/#recipe=From_Binary('Space',8)To_Hex('Space',0)&input=MTExMDAwMDAgMTExMDAwMDAgMDEwMDAwMDAgMTAxMTExMTE	
+*https://gchq.github.io/CyberChef/#recipe=From_Binary('Space',8)To_Hex('Space',0)&input=MTExMDAwMDAgMTExMDAwMDAgMDEwMDAwMDAgMTAxMTExMTE*
 
 Second, you may use your offline PC calculator. The result is the same.
 ![](https://raw.githubusercontent.com/IvanGlinkin/media_support/refs/heads/main/HackingIR-024.png)	
-Calculator
+*Calculator*
 
 Another one converter is through the command line. Linux has an application called bc – arbitrary-precision decimal arithmetic language and calculator. As attributes it takes input (-I) and output (-O) values, and the number to decode (-e).
 ![](https://raw.githubusercontent.com/IvanGlinkin/media_support/refs/heads/main/HackingIR-025.png)	
-bc	
+*bc*
 
 In this case we asked bc to convert our binary (-I 2) payload (-e) into decimal (-O 10) and hex (-O 16). As you may see the result is the same hence, it’s up to you to choose the most convenient approach..
-
- 
 
 The final result for our Samsung TV remote Power button:
 
@@ -190,7 +193,7 @@ The full address to our rep is here – https://github.com/IvanGlinkin/Default-I
 It is divided by vendor’s name and subdivided by the device, like TV or fireplace. The final one directory contains Datasheet, Remote pictures and Samples folders.
 ![](https://raw.githubusercontent.com/IvanGlinkin/media_support/refs/heads/main/HackingIR-026.png)	
 ![](https://raw.githubusercontent.com/IvanGlinkin/media_support/refs/heads/main/HackingIR-027.png)	
-https://github.com/IvanGlinkin/Default-IR-vendors-samples	
+*https://github.com/IvanGlinkin/Default-IR-vendors-samples*
 
 If you want to participate and contribute to this repository, you are more then welcome. But please, let’s keep it organized and follow the structure.
 
