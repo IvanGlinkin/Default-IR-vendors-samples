@@ -1,8 +1,8 @@
-#Inside the World of IR Hacking: Turn Your TV Remote into a Science Experiment
+# Inside the World of IR Hacking: Turn Your TV Remote into a Science Experiment
 
 When speaking of hardware hacking, we can’t overlook one of the oldest, and still valuable and usable, transmitting method as Infra-Red transaction. It’s still in use in our homes, offices, and sometimes in manufacturing. It has its own disadvantages, such as a limited transmission range, sensitivity to light, slow speed, and the possibility of being intercepted and reused (including replay attacks). However, on the other hand, it’s inexpensive to produce, easy to use, and offers long battery life for remotes, as it consumes electricity only during operation. Today we are going to talk about IR reverse engineering aka hardware hacking against IR remote protocols. 
 
-0. Preparation
+0.Preparation:
 --------------
 
 Before diving into the subject, we need to prepare the necessary hardware and software. The main application we are going to use is digital oscilloscope. I know at least 2 of them: Logic 2 from Saleae, Inc (https://www.saleae.com/pages/downloads) and PulseView from Sigrok (https://sigrok.org/wiki/Downloads). Both of them are fully free and you can easily download and install it onto your PC or Mac.
@@ -34,7 +34,7 @@ The last one is an external DC power supply, at least capable to output 3.3 volt
 Raspberry Pi GPIO pins	
 
 
-1. Bringing it all together
+1.Bringing it all together:
 ---------------------------
 
 Once you have everything you need to start performing IR reverse engineering, it’s time to bring them all together to the working state.
@@ -67,7 +67,7 @@ Then, connect the second wire with the logic analyzer ground; and another end to
 Logic analyzer connection	
 
 
-2. Intercepting and analyzing
+2.Intercepting and analyzing:
 -----------------------------
 
 Alrighty 🙂 IR receiver is connected and working (at least it’s reacting to the remote); and logic analyzer is plugged into the PC. Basically, the kit is set up and now it’s time to do some magic!
@@ -163,7 +163,7 @@ The final result for our Samsung TV remote Power button:
 The same way you may intercept and decode other buttons.
 
  
-3. Signals’ library
+3.Signals’ library:
 -------------------
 
 During preparation for this article, we tried to find any IR databases which stored main vendors’ signals. Unfortunately, except flipper zero (https://github.com/UberGuidoZ/Flipper-IRDB) and probonopd (https://github.com/probonopd/irdb) github repository, we were not able to get something specific (or maybe we did not OSINTed enough ;).
@@ -195,7 +195,7 @@ https://github.com/IvanGlinkin/Default-IR-vendors-samples
 If you want to participate and contribute to this repository, you are more then welcome. But please, let’s keep it organized and follow the structure.
 
  
-4. Conclusion
+4.Conclusion:
 -------------
  
 
