@@ -149,6 +149,7 @@ First, you may use an online calculator CyberChef: just implement 2 modules – 
 
 Second, you may use your offline PC calculator. The result is the same.
 ![](https://raw.githubusercontent.com/IvanGlinkin/media_support/refs/heads/main/HackingIR-024.png)	
+
 *Calculator*
 
 Another one converter is through the command line. Linux has an application called bc – arbitrary-precision decimal arithmetic language and calculator. As attributes it takes input (-I) and output (-O) values, and the number to decode (-e).
@@ -208,3 +209,5 @@ We demonstrated how to set up an IR receiver with a logic analyzer, capture sign
 
 By following this guide, you now have the tools to delve into the fascinating world of IR reverse engineering. Whether you’re an enthusiast or a professional, this knowledge can help you uncover the inner workings of IR-based communication and potentially contribute to the growing open-source community.
 Post navigation
+
+![The original article](https://www.ivanglinkin.com/inside-the-world-of-ir-hacking-turn-your-tv-remote-into-a-science-experiment/)
